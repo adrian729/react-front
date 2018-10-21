@@ -67,7 +67,7 @@ function validate(values) {
     const errors = {};
     
     // Validate the imputs from 'values'
-    const valid_chars = /^[a-zA-Z0-9!@#\$%\^&\*]*$/;
+    const valid_chars = /^[a-zA-Z0-9!@#$%^&*]*$/;
 
     if (!values.name) {
         errors.name = "Required";
