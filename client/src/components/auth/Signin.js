@@ -4,25 +4,9 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 
+import AuthFormField from 'components/auth/AuthFormField';
+
 class Signin extends Component {
-    renderField(field) {
-        const { meta: { touched, error } } = field;
-        const className = `form-group ${touched && error ? 'has-danger' : ''}`;
-
-        return (
-            <div className={className}>
-                <label>{field.label}</label>
-                <input
-                    className="form-control"
-                    {...field.input}
-                />
-                <div className="text-help">
-                    {touched ? error : ''}
-                </div>
-            </div>
-        );
-    }
-
     onSubmit = (formProps) => {
         this.props.signin(formProps, () => {
             this.props.history.push('/feature');
@@ -35,20 +19,20 @@ class Signin extends Component {
         return (
             <form onSubmit={handleSubmit(this.onSubmit)}>
                 <fieldset>
-                    <label>User Name</label>
                     <Field
+                        label="User Name"
                         name="name"
                         type="text"
-                        component={this.renderField}
+                        component={AuthFormField}
                         autoComplete="none"
                     />
                 </fieldset>
                 <fieldset>
-                    <label>Password</label>
                     <Field
+                        label="Password"
                         name="password"
                         type="password"
-                        component={this.renderField}
+                        component={AuthFormField}
                         autoComplete="none"
                     />
                 </fieldset>

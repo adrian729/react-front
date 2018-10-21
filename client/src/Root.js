@@ -8,13 +8,13 @@ import reducers from 'reducers';
 
 export default ({ children, initialState = {} }) => {
 
-    if(initialState.auth === undefined) {
+    // TODO: see if there's another way to do this (it works fine but it's not clean)
+    if (initialState.auth === undefined) {
         initialState.auth = {};
     }
-    if(initialState.auth.authenticated === undefined) {
+    if (initialState.auth.authenticated === undefined) {
         initialState.auth.authenticated = localStorage.getItem('token');
     }
-    console.log(initialState);
 
     const store = createStore(
         reducers,
@@ -22,7 +22,6 @@ export default ({ children, initialState = {} }) => {
         applyMiddleware(reduxThunk, reduxPromise)
     );
     // TODO: reduxThunk or reduxPromise?
-
 
     return (
         <Provider store={store}>

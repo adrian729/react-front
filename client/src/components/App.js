@@ -5,7 +5,6 @@ import Header from 'components/Header';
 import Feature from 'components/Feature';
 import Signup from 'components/auth/Signup';
 import Signin from 'components/auth/Signin';
-import Signout from 'components/auth/Signout';
 
 export default () => {
     return (
@@ -14,7 +13,6 @@ export default () => {
             <Switch>
                 <Route path="/feature" component={Feature} />
                 <Route path="/signup" component={Signup} />
-                <Route path="/signout" component={Signout} />
                 <Route path="/signin" component={Signin} />
                 <Route path="/" component={Signin} />
             </Switch>
