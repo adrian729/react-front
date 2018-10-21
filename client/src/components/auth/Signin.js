@@ -1,10 +1,28 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 
 class Signin extends Component {
+    renderField(field) {
+        const { meta: { touched, error } } = field;
+        const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+
+        return (
+            <div className={className}>
+                <label>{field.label}</label>
+                <input
+                    className="form-control"
+                    {...field.input}
+                />
+                <div className="text-help">
+                    {touched ? error : ''}
+                </div>
+            </div>
+        );
+    }
+
     onSubmit = (formProps) => {
         this.props.signin(formProps, () => {
             this.props.history.push('/feature');
@@ -17,11 +35,11 @@ class Signin extends Component {
         return (
             <form onSubmit={handleSubmit(this.onSubmit)}>
                 <fieldset>
-                    <label>Email</label>
+                    <label>User Name</label>
                     <Field
-                        name="email"
+                        name="name"
                         type="text"
-                        component="input"
+                        component={this.renderField}
                         autoComplete="none"
                     />
                 </fieldset>
@@ -30,7 +48,7 @@ class Signin extends Component {
                     <Field
                         name="password"
                         type="password"
-                        component="input"
+                        component={this.renderField}
                         autoComplete="none"
                     />
                 </fieldset>
@@ -45,7 +63,27 @@ function mapStateToProps(state) {
     return { errorMessage: state.auth.errorMessage };
 }
 
+function validate(values) {
+    const errors = {};
+
+    // Validate the imputs from 'values'
+    if (!values.name) {
+        errors.name = "Required";
+    }
+
+    if (!values.password) {
+        errors.password = "Required";
+    }
+
+    // if errors is empty, the form is fine to submit
+    // If errors has *any* properties, redux form assumes form is invalid
+    return errors;
+}
+
 export default compose(
-    connect(mapStateToProps, actions),
-    reduxForm({ form: 'signin' })
+    reduxForm({
+        validate,
+        form: 'signin'
+    }),
+    connect(mapStateToProps, actions)
 )(Signin);
