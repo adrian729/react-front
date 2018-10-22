@@ -36,6 +36,15 @@ class Signup extends Component {
                         autoComplete="none"
                     />
                 </fieldset>
+                <fieldset>
+                    <Field
+                        label="Repeat password"
+                        name="checkPassword"
+                        type="password"
+                        component={AuthFormField}
+                        autoComplete="none"
+                    />
+                </fieldset>
                 <div>{this.props.errorMessage}</div>
                 <button>Sign Up!</button>
             </form>
@@ -71,6 +80,12 @@ function validate(values) {
         errors.password = 'Must contain at least a numeric character'
     } else if (values.password.length < 7) {
         errors.password = 'Must have 7 characters or more'
+    }
+
+    if (!values.checkPassword) {
+        errors.checkPassword = "Required";
+    } else if (values.checkPassword !== values.password) {
+        errors.checkPassword = 'Password doesn\'t match';
     }
 
     // if errors is empty, the form is fine to submit
