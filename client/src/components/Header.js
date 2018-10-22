@@ -5,7 +5,6 @@ import 'components/HeaderStyle.css';
 import * as actions from 'actions';
 
 class Header extends Component {
-
     renderLinks() {
         if (this.props.authenticated) {
             return (

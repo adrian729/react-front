@@ -49,7 +49,7 @@ function mapStateToProps(state) {
 
 function validate(values) {
     const errors = {};
-    
+
     // Validate the imputs from 'values'
     const valid_chars = /^[a-zA-Z0-9!@#$%^&*]*$/;
 
@@ -65,9 +65,9 @@ function validate(values) {
         errors.password = 'Contains an invalid character'
     } else if (!/^(?=.*[a-z])/.test(values.password)) {
         errors.password = 'Must contain at least a lowercase alphabetical character'
-    }else if (!/^(?=.*[A-Z])/.test(values.password)) {
+    } else if (!/^(?=.*[A-Z])/.test(values.password)) {
         errors.password = 'Must contain at least an uppercase alphabetical character'
-    }else if (!/^(?=.*[0-9])/.test(values.password)) {
+    } else if (!/^(?=.*[0-9])/.test(values.password)) {
         errors.password = 'Must contain at least a numeric character'
     } else if (values.password.length < 7) {
         errors.password = 'Must have 7 characters or more'
