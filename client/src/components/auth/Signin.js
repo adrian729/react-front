@@ -4,8 +4,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 
-// TODO: when invalid login, error missage persists if we change to Sign Up
-
 import AuthFormField from 'components/auth/AuthFormField';
 
 class Signin extends Component {
