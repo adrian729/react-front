@@ -12,6 +12,6 @@ export default function (state = INITIAL_STATE, action) {
         case AUTH_ERROR:
             return { ...state, errorMessage: action.payload };
         default:
-            return {...state, errorMessage: ''};
+            return { ...state, errorMessage: '' };
     }
 }
