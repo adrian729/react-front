@@ -10,6 +10,8 @@ class Header extends Component {
             return (
                 <div>
                     <Link to="/feature">Feature</Link>
+                    <Link to="/c3">C3 Example</Link>
+                    <Link to="/chartjs">Chartjs Example</Link>
                     <Link to="/" onClick={this.props.signout}>Sign Out</Link>
                 </div>
             );
